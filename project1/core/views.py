@@ -3,4 +3,5 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-	return HttpResponse("Dashboard Page")
+	page_data = {"data" : [1,2,3,4,5]}
+	return render(request, 'core/home.html', context=page_data)

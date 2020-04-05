@@ -26,5 +26,8 @@ urlpatterns = [
     path('journal/', journal_views.journal, name='journal'),
     path('tasks/', tasks_views.tasks, name='tasks'),
     path('budget/', budget_views.budget, name='budget'),
-    path('about/', core_views.about, name='about')
+    path('about/', core_views.about, name='about'),
+    path('join/', core_views.join, name='join'),
+    path('login/', core_views.user_login, name='user_login'),
+    path('logout/', core_views.user_logout, name='user_logout')
 ]

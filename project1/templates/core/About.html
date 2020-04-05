@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% include "core/Bootstrap.html" %}
+    <title>About</title>
+  </head>
+  <body>
+    {% include "core/Navigation_Bar.html" %}
+<div class="body1">
+  <br>
+  <h1>CINS 465: Assignment 1 by Sujeet Hiremath</h1>
+  <br>
+  <h2>About Functioning of Django Web Application</h2>
+  <div>
+      <p>The web application waits for HTTP requests from the web browser. When a request is received the application works out what is needed based on the URL and information in GET data. It reads information from a page_data dictonary. The application then returns a response to the web browser, dynamically creating an HTML page for the browser to display by inserting the retrieved data into placeholders in an HTML template.</p>
+      <p>The web application has 3 major components:</p>
+      <ol>
+        <li>View (views.py)
+        	<br>
+        	<p>A view is a request handler function, which receives HTTP requests and returns HTTP responses. Views access the data needed to satisfy requests via models, and delegate the formatting of the response to templates.<br>Created different view functions to handle each different resource.</p>
+        	<ul>
+        		<li>home view function: For chessboard page.</li>
+        		<li>history view function : For chessboard history page</li>
+        		<li>piecessummary view function: For chess piece summary page</li>
+        		<li>about view function: For this current page</li>
+        	</ul>
+        </li>
+        <br>
+        <li> URLS (urls.py)
+        	<br>
+        	<p>A URL mapper is used to redirect HTTP requests to the appropriate view based on the request URL. </p>
+        </li>
+        <li>Templates (html file)
+        	<br>
+        	<p>A template is a text file defining the structure or layout of a file (such as an HTML page), with placeholders used to represent actual content. A view dynamically creates an HTML page using an HTML template, populating it with data from a model.</p>
+        </li>
+      </ol>
+  </div>
+</div>
+  </body>
+</html>

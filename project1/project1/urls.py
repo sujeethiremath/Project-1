@@ -25,5 +25,6 @@ urlpatterns = [
     path('',core_views.home, name='home'),
     path('journal/', journal_views.journal, name='journal'),
     path('tasks/', tasks_views.tasks, name='tasks'),
-    path('budget/', budget_views.budget, name='budget')
+    path('budget/', budget_views.budget, name='budget'),
+    path('about/', core_views.about, name='about')
 ]

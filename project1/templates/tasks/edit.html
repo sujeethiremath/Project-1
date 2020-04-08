@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	{% include "core/Bootstrap.html" %}
+	<title>Edit Task</title>
+</head>
+<body>
+{% include "core/Navigation_Bar.html" %}
+<div class="container">
+    <div class = "jumbotron">
+      <h1>Edit Task</h1>
+      <form method="POST" action="/edit/">
+        {{ edit_task_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" name = "Edit_Task">Update</button>
+      </form>
+        <a href="/tasks/">
+        	<button type="submit" class="btn btn-primary" value="Cancel" name = "Cancel">Cancel</button>
+        </a>
+    </div>
+  </div>
+</body>
+</html>

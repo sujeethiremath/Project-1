@@ -3,10 +3,101 @@
 <head>
 	<meta charset="utf-8">
 	{% include "core/Bootstrap.html" %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 	<title>DashBoard</title>
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
 <h1>Dashboard Page</h1>
+<div class="container">
+  <div class="row"> 
+    <div class="col-sm">
+    	<div>Tasks</div>
+      <div class="ct-perfect-fourth" id="chart1"></div>
+        <script>
+            var data = {
+            labels: ['Completed', 'Incomplete'],
+            series: [{{ completed }}, {{ pending }}]
+            };
+
+            var options = {
+            labelInterpolationFnc: function(value) {
+                return value[0]
+            }
+            };
+
+            var responsiveOptions = [
+            ['screen and (min-width: 640px)', {
+                chartPadding: 30,
+                labelOffset: 100,
+                labelDirection: 'explode',
+                labelInterpolationFnc: function(value) {
+                return value;
+                }
+            }],
+            ['screen and (min-width: 1024px)', {
+                labelOffset: 80,
+                chartPadding: 20
+            }]
+            ];
+
+            var mychart = new Chartist.Pie('#chart1', data, options, responsiveOptions);
+        </script>
+        <a href="/tasks/">
+		<button type="submit" class="btn btn-primary">Task</button>
+		</a>
+    </div>
+    <div class="col-sm">
+      <div>Budget</div>
+      <div class="ct-perfect-fourth" id="chart2"></div>
+<script>
+  var data1 = {
+    labels: [ 'Food', 'Clothing', 'Housing', 'Education', 'Entertainment', 'Other'
+      ],
+    series: [
+      [
+      {% for x in series1 %}
+        {{ x }},
+      {% endfor %}
+      ],
+      [
+      {% for y in series2 %} 
+        {{ y }},
+      {% endfor %}
+      ]
+    ]
+  };
+
+  var options1 = {
+    seriesBarDistance: 6
+  };
+
+  var responsiveOptions1 = [
+    ['screen and (max-width: 640px)', {
+      seriesBarDistance: 5,
+      axisX: {
+        labelInterpolationFnc: function (value) {
+          return value[0];
+        }
+      }
+    }]
+  ];
+  var mychart1 = new Chartist.Bar('#chart2', data1, options1, responsiveOptions1);
+</script>
+ 		<a href="/budget/">
+		<button type="submit" class="btn btn-primary">Budget</button>
+		</a>
+    </div>
+    <div class="col-sm">
+      <div>Journal</div>
+      <div>Total Number of Journal Entries: {{Entries}}</div>
+      <div>Total Number of Days since last Journal Entry: {{Days}}</div>
+      <a href="/journal/">
+		<button type="submit" class="btn btn-primary">Journal</button>
+		</a>
+    </div>
+  </div>
+</div>
 </body>
 </html>

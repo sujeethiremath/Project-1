@@ -7,6 +7,84 @@
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
+
+
+	<!-- Modal -->
+<div id="deleteModal" class="modal fade" role='dialog'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Delete Task</h4>
+			</div>
+		<div class="modal-body">
+			<p>Do you really want to delete this task?</p>
+	</div>
+		<div class="modal-footer">
+			<a href="/tasks/">
+			<button type="button" class="btn btn-default" datadismiss="modal">Cancel</button>
+			</a>
+			<span id= 'deleteButton'></span>
+		</div>
+	</div>
+	</div>
+</div>
+<!--Modal ends here--->
+
+
+
+
+
+
+
+
+
 <h1>Tasks</h1>
+
+<form method="POST" action="/hide/">
+	{% csrf_token %}
+        {% if enabled == True %}
+            <p>Hide Completed Tasks <input type="checkbox" name="chk_ON" id="id_chk_hvstatus" onclick="this.form.submit();" checked></p>
+        {% else %}
+            <p>Hide Completed Tasks <input type="checkbox" name="chk_ON" id="id_chk_hvstatus" onclick="this.form.submit();"></p>
+        {% endif %}
+    </form>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	{% for key, value  in dat.items %}
+    		{% for x in value %}
+    			{% if forloop.counter == 3 and x == True %}
+    				<td>Yes</td>
+    			{% elif forloop.counter == 3 and x == False %}
+    				<td>No</td>
+    			{% elif forloop.counter == 4 %}
+    				<td><a class="btn btn-primary" href="/edit/?id={{x}}">Edit</a>
+    					<a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
+    				</td>
+    			{% else %}
+    				<td>{{ x }}</td>>
+    			{% endif %}
+    		{% endfor %}
+    	</tr>
+    	{% endfor %}
+  </tbody>
+</table>
+<a href="/addtask/">
+<button type="submit" class="btn btn-primary">Add Task</button>
+</a>
+
+{% load staticfiles %}
+<script src="{%static 'JS/modal.js' %}"></script>
+
+
 </body>
 </html>

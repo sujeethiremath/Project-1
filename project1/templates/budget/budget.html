@@ -7,6 +7,64 @@
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
-<h1>Budget Page</h1>	
+
+
+
+	<!-- Modal -->
+<div id="deleteModal" class="modal fade" role='dialog'>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Delete Budget Item</h4>
+			</div>
+		<div class="modal-body">
+			<p>Do you really want to delete this budget item?</p>
+	</div>
+		<div class="modal-footer">
+			<a href="/budget/">
+			<button type="button" class="btn btn-default" datadismiss="modal">Cancel</button>
+			</a>
+			<span id= 'deleteButton'></span>
+		</div>
+	</div>
+	</div>
+</div>
+<!--Modal ends here--->
+
+<h1>Budget</h1>	
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Projected</th>
+      <th scope="col">Actual</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    	{% for key, value  in dat.items %}
+    		{% for x in value %}
+    			{% if forloop.counter == 5 %}
+    				<td><a class="btn btn-primary" href="/editbudget/?id={{x}}">Edit</a>
+    					<a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
+    				</td>
+    			{% else %}
+    				<td>{{ x }}</td>>
+    			{% endif %}
+    		{% endfor %}
+    	</tr>
+    	{% endfor %}
+  </tbody>
+</table>
+<a href="/addbudget/">
+<button type="submit" class="btn btn-primary">Add Budget Item</button>
+</a>
+<p></p>
+{% load staticfiles %}
+<script src="{%static 'JS/modal_budget.js' %}"></script>
+{{data}}
 </body>
 </html>

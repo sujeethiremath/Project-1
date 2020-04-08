@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+	{% include "core/Bootstrap.html" %}
+	<title>Add Journal Entry</title>
+</head>
+<body>
+	{% include "core/Navigation_Bar.html" %}
+	<div class="container">
+    <div class = "jumbotron">
+      <h1>Add Journal Entry</h1>
+      <form method="POST" action="/addentry/">
+        {{ add_journal_form.as_p }}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" name = "Add_Budget_Item">Add Journal Entry</button>
+      </form>
+        <a href="/journal/">
+        	<button type="submit" class="btn btn-primary" value="Cancel" name = "Cancel">Cancel</button>
+        </a>
+    </div>
+  </div>
+</body>
+</html>

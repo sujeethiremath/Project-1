@@ -24,10 +24,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',core_views.home, name='home'),
     path('journal/', journal_views.journal, name='journal'),
+    path('editentry/', journal_views.editentry, name='edit_entry'),
+    path('removeentry/', journal_views.removeentry, name='remove_entry'),
+    path('addentry/', journal_views.addentry, name='add_entry'),
     path('tasks/', tasks_views.tasks, name='tasks'),
     path('budget/', budget_views.budget, name='budget'),
+    path('addbudget/', budget_views.addbudget, name='add_budget'),
+    path('editbudget/', budget_views.editbudget, name='edit_budget'),
+    path('removebudget/', budget_views.removebudget, name='remove_budget'),
     path('about/', core_views.about, name='about'),
     path('join/', core_views.join, name='join'),
     path('login/', core_views.user_login, name='user_login'),
-    path('logout/', core_views.user_logout, name='user_logout')
+    path('logout/', core_views.user_logout, name='user_logout'),
+    path('addtask/', tasks_views.AddTasks, name='add_task'),
+    path('edit/', tasks_views.edit, name='tasks_edit'),
+    path('hide/', tasks_views.hide, name='hide_tasks'),
+    path('remove/', tasks_views.remove, name='tasks_remove')
 ]

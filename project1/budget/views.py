@@ -24,8 +24,10 @@ def calculate(uname):
 		total_projected = total_projected + x.Projected
 	if total_projected - total_actual > 0:
 		s = "There is a projected budget surplus of $" + str(total_projected - total_actual)
-	else:
+	elif total_projected - total_actual < 0:
 		s = "There is a projected budget deficit of -$" + str((total_projected - total_actual)*-1)
+	else:
+		s = ""
 	return s
 
 

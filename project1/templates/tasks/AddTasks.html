@@ -11,13 +11,23 @@
     <div class = "jumbotron">
       <h1>Add Task</h1>
       <form method="POST" action="/addtask/">
-        {{ AddTask_form.as_p }}
+         <table class="table table-sm">
+        {{ AddTask_form.as_table }}
         {% csrf_token %}
+        </table>
+         <table>
+        <tr>
+          <td>
         <button type="submit" class="btn btn-primary" name = "Add_Task">Add Task</button>
       </form>
+      </td>
+          <td>
         <a href="/tasks/">
         	<button type="submit" class="btn btn-primary" value="Cancel" name = "Cancel">Cancel</button>
         </a>
+        </td>
+        </tr>
+      </table>
     </div>
   </div>
 </body>

@@ -66,7 +66,13 @@ def home(request):
     for x in records:
         Total_Entries = Total_Entries + 1
 
-    recent_date = Journal.objects.all().filter(Username = request.user).latest('Date').Date
+    x = Journal.objects.all().filter(Username = request.user)
+
+    if x.exists():
+    	recent_date = Journal.objects.all().filter(Username = request.user).latest('Date').Date
+    else:
+    	recent_date = datetime.date.today()
+    
     days = datetime.date.today() - recent_date
     return render(request, 'core/home.html', {"completed":completed, "pending" : pending, "series1" : series1, "series2" : series2, "Entries":Total_Entries, "Days": days})
 

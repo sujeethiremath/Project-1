@@ -8,8 +8,9 @@
   <body>
     {% include "core/Navigation_Bar.html" %}
 <div class="body1">
-  <br>
-  <h1>CINS 465: Assignment 1 by Sujeet Hiremath</h1>
+  <div class="container">
+    <br>
+  <h1>CINS 465: Project 1 by Sujeet Hiremath</h1>
   <br>
   <h2>About Functioning of Django Web Application</h2>
   <div>
@@ -17,25 +18,62 @@
       <p>The web application has 3 major components:</p>
       <ol>
         <li>View (views.py)
-        	<br>
-        	<p>A view is a request handler function, which receives HTTP requests and returns HTTP responses. Views access the data needed to satisfy requests via models, and delegate the formatting of the response to templates.<br>Created different view functions to handle each different resource.</p>
-        	<ul>
-        		<li>home view function: For chessboard page.</li>
-        		<li>history view function : For chessboard history page</li>
-        		<li>piecessummary view function: For chess piece summary page</li>
-        		<li>about view function: For this current page</li>
-        	</ul>
+          <br>
+          <p>A view is a request handler function, which receives HTTP requests and returns HTTP responses. Views access the data needed to satisfy requests via models, and delegate the formatting of the response to templates.<br>Created different view functions to handle each different resource.</p>
+          <ul>
+            <li>home view function: For chessboard page.</li>
+            <li>history view function : For chessboard history page</li>
+            <li>piecessummary view function: For chess piece summary page</li>
+            <li>about view function: For this current page</li>
+          </ul>
         </li>
         <br>
         <li> URLS (urls.py)
-        	<br>
-        	<p>A URL mapper is used to redirect HTTP requests to the appropriate view based on the request URL. </p>
+          <br>
+          <p>A URL mapper is used to redirect HTTP requests to the appropriate view based on the request URL. </p>
         </li>
         <li>Templates (html file)
-        	<br>
-        	<p>A template is a text file defining the structure or layout of a file (such as an HTML page), with placeholders used to represent actual content. A view dynamically creates an HTML page using an HTML template, populating it with data from a model.</p>
+          <br>
+          <p>A template is a text file defining the structure or layout of a file (such as an HTML page), with placeholders used to represent actual content. A view dynamically creates an HTML page using an HTML template, populating it with data from a model.</p>
         </li>
       </ol>
+  </div>
+  <div>
+     <h2>About Implementation of Django Oraganizer Web Application</h2>
+     <p>To complete this Django Oraganizer Web Application Project the plan of attack was implementing different apps and their different functionalities</p>
+     <ol>
+      <li>Tasks</li>
+      <li>Budget (Once the Tasks app completed, the implementation of Budget and Journal are pretty straight forward)</li>
+      <li>Journal</li>
+      <li>Dashboard Page
+        <br>
+        <p>
+          Dashboard has several components like visual representation of Tasks, Budget. To visualize the data we used Chartist api. 
+        </p>
+        <p>
+          The technology used for this entire project is Django framework. We used programming languages like python, javascript. HTML, CSS, Bootstrap is used for frontend developement.
+        </p>
+      </li>
+     </ol>
+     <h2>Professional Summary</h2>
+     <p>{% load static %}<img src="{%static 'IMG/sujeet.jpg' %}" style="width:40%;padding:0 35px 0px 0;float:left"></p>
+     
+     <p>I am a Computer Science graduate student at California State University, Chico. My professional summary as follows</p>
+     <h4>Associate Software Engineer at FIGmd India (2017-2018)</h4>
+     <ul>
+      <li>FIGmd is one of the fastest growing start-ups in India backed by Google Ventures</li>
+      <li>Contributed to the newly introduced project ASPS (American Society of Plastic Surgeons).</li>
+      <li>led the ETL mapping team assigned for TOPS module under ASPS project.</li>
+      <li>Trained new employees on use of internal ETL: SPINE, Automatic SSIS handler tool: Martian.</li>
+      <li>Created SQL views and filters essential to extract specific data automatically through extraction tool. </li>
+      <li>Expertise in ETL mapping databases Oracle, SQL Server, MySQL, C-Tree</li>
+      <li>Attended overseas calls from clients</li>
+      <li>Provided the business intelligence reports provided through CMS dashboard.</li>
+      <li>Worked with agile teams.</li>
+      <li>Experience in efficiently using JIRA for bug tracking and agile project management.</li>
+     </ul>
+  </div>
+  <p>&nbsp;</p>
   </div>
 </div>
   </body>

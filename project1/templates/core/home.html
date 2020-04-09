@@ -9,11 +9,14 @@
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
-<h1>Dashboard Page</h1>
 <div class="container">
+<p>&nbsp;</p>
+<h1>Dashboard Page</h1>
+<p>&nbsp;</p>
   <div class="row"> 
     <div class="col-sm">
-    	<div>Tasks</div>
+    	<strong>Tasks</strong>
+      <p>&nbsp;</p>
       <div class="ct-perfect-fourth" id="chart1"></div>
         <script>
             var data = {
@@ -44,12 +47,15 @@
 
             var mychart = new Chartist.Pie('#chart1', data, options, responsiveOptions);
         </script>
+        <div class="text-center">
         <a href="/tasks/">
 		<button type="submit" class="btn btn-primary">Task</button>
 		</a>
+  </div>
     </div>
     <div class="col-sm">
-      <div>Budget</div>
+      <strong>Budget</strong>
+      <p>&nbsp;</p>
       <div class="ct-perfect-fourth" id="chart2"></div>
 <script>
   var data1 = {
@@ -85,17 +91,22 @@
   ];
   var mychart1 = new Chartist.Bar('#chart2', data1, options1, responsiveOptions1);
 </script>
+<div class="text-center">
  		<a href="/budget/">
 		<button type="submit" class="btn btn-primary">Budget</button>
 		</a>
+  </div>
     </div>
     <div class="col-sm">
-      <div>Journal</div>
+      <strong>Journal</strong>
+      <p>&nbsp;</p>
       <div>Total Number of Journal Entries: {{Entries}}</div>
       <div>Total Number of Days since last Journal Entry: {{Days}}</div>
+      <div class="text-center">
       <a href="/journal/">
 		<button type="submit" class="btn btn-primary">Journal</button>
 		</a>
+  </div>
     </div>
   </div>
 </div>

@@ -7,31 +7,29 @@
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
-
-
-
 	<!-- Modal -->
 <div id="deleteModal" class="modal fade" role='dialog'>
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Delete Budget Item</h4>
-			</div>
-		<div class="modal-body">
-			<p>Do you really want to delete this budget item?</p>
-	</div>
-		<div class="modal-footer">
-			<a href="/budget/">
-			<button type="button" class="btn btn-default" datadismiss="modal">Cancel</button>
-			</a>
-			<span id= 'deleteButton'></span>
-		</div>
-	</div>
-	</div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Budget Item</h4>
+      </div>
+    <div class="modal-body">
+      <p>Do you really want to delete this budget item?</p>
+  </div>
+    <div class="modal-footer">
+      <a href="/budget/">
+      <button type="button" class="btn btn-default" datadismiss="modal">Cancel</button>
+      </a>
+      <span id= 'deleteButton'></span>
+    </div>
+  </div>
+  </div>
 </div>
 <!--Modal ends here--->
+<div class="container">
 
-<h1>Budget</h1>	
+<h1>Budget</h1> 
 
 <table class="table table-bordered">
   <thead>
@@ -45,18 +43,18 @@
   </thead>
   <tbody>
     <tr>
-    	{% for key, value  in dat.items %}
-    		{% for x in value %}
-    			{% if forloop.counter == 5 %}
-    				<td><a class="btn btn-primary" href="/editbudget/?id={{x}}">Edit</a>
-    					<a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
-    				</td>
-    			{% else %}
-    				<td>{{ x }}</td>>
-    			{% endif %}
-    		{% endfor %}
-    	</tr>
-    	{% endfor %}
+      {% for key, value  in dat.items %}
+        {% for x in value %}
+          {% if forloop.counter == 5 %}
+            <td><a class="btn btn-primary" href="/editbudget/?id={{x}}">Edit</a>
+              <a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
+            </td>
+          {% else %}
+            <td>{{ x }}</td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
   </tbody>
 </table>
 <a href="/addbudget/">
@@ -66,5 +64,6 @@
 {% load staticfiles %}
 <script src="{%static 'JS/modal_budget.js' %}"></script>
 {{data}}
+</div>
 </body>
 </html>

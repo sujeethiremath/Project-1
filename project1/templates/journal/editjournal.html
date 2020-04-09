@@ -12,13 +12,23 @@
     <div class = "jumbotron">
       <h1>Edit Journal Entry</h1>
       <form method="POST" action="/editentry/">
-        {{ edit_journal_form.as_p }}
+        <table class="table table-sm">
+        {{ edit_journal_form.as_table }}
         {% csrf_token %}
+         </table>
+         <table>
+        <tr>
+          <td>
         <button type="submit" class="btn btn-primary" name = "Edit_Journal_item">Update</button>
       </form>
+      </td>
+          <td>
         <a href="/journal/">
         	<button type="submit" class="btn btn-primary" value="Cancel" name = "Cancel">Cancel</button>
         </a>
+        </td>
+        </tr>
+      </table>
     </div>
   </div>
 </body>

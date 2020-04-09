@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	{% include "core/Bootstrap.html" %}
 	<title>Tasks</title>
+  <style>
+
+  </style>
 </head>
 <body>
 	{% include "core/Navigation_Bar.html" %}
@@ -29,19 +32,11 @@
 	</div>
 </div>
 <!--Modal ends here--->
-
-
-
-
-
-
-
-
-
-<h1>Tasks</h1>
+<div class="container">
+  <h1>Tasks</h1>
 
 <form method="POST" action="/hide/">
-	{% csrf_token %}
+  {% csrf_token %}
         {% if enabled == True %}
             <p>Hide Completed Tasks <input type="checkbox" name="chk_ON" id="id_chk_hvstatus" onclick="this.form.submit();" checked></p>
         {% else %}
@@ -60,22 +55,22 @@
   </thead>
   <tbody>
     <tr>
-    	{% for key, value  in dat.items %}
-    		{% for x in value %}
-    			{% if forloop.counter == 3 and x == True %}
-    				<td>Yes</td>
-    			{% elif forloop.counter == 3 and x == False %}
-    				<td>No</td>
-    			{% elif forloop.counter == 4 %}
-    				<td><a class="btn btn-primary" href="/edit/?id={{x}}">Edit</a>
-    					<a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
-    				</td>
-    			{% else %}
-    				<td>{{ x }}</td>>
-    			{% endif %}
-    		{% endfor %}
-    	</tr>
-    	{% endfor %}
+      {% for key, value  in dat.items %}
+        {% for x in value %}
+          {% if forloop.counter == 3 and x == True %}
+            <td>Yes</td>
+          {% elif forloop.counter == 3 and x == False %}
+            <td>No</td>
+          {% elif forloop.counter == 4 %}
+            <td><a class="btn btn-primary" href="/edit/?id={{x}}">Edit</a>
+              <a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{x}})">Delete</a>
+            </td>
+          {% else %}
+            <td>{{ x }}</td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
   </tbody>
 </table>
 <a href="/addtask/">
@@ -84,7 +79,6 @@
 
 {% load staticfiles %}
 <script src="{%static 'JS/modal.js' %}"></script>
-
-
+</div>
 </body>
 </html>

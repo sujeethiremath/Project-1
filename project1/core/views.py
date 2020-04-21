@@ -37,22 +37,22 @@ def home(request):
     pre_Other = 0
 
     for x in records:
-        if x.Category == 'Food':
+        if x.Category.id == 1:
             act_Food = act_Food + x.Actual
             pre_Food = pre_Food + x.Projected
-        if x.Category == 'Clothing':
+        if x.Category.id == 2:
             act_Clothing = act_Clothing + x.Actual
             pre_Clothing = pre_Clothing + x.Projected
-        if x.Category == 'Housing':
+        if x.Category.id == 3:
             act_Housing = act_Housing + x.Actual
             pre_Housing = pre_Housing + x.Projected
-        if x.Category == 'Education':
+        if x.Category.id == 4:
             act_Education = act_Education + x.Actual
             pre_Education = pre_Education + x.Projected
-        if x.Category == 'Entertainment':
+        if x.Category.id == 5:
             act_Entertainment = act_Entertainment + x.Actual
             pre_Entertainment = pre_Entertainment + x.Projected
-        if x.Category == 'Other':
+        if x.Category.id == 6:
             act_Other = act_Other + x.Actual
             pre_Other = pre_Other + x.Projected
 

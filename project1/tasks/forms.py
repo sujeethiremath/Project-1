@@ -13,5 +13,5 @@ class edit_task(forms.Form):
 	Description = forms.CharField(min_length=1, max_length=150, strip=True,
         widget= forms.TextInput(attrs={'style':'font-size:small'}))
 	Category= forms.CharField(widget=forms.Select(choices=CHOICES))
-	Completed = forms.BooleanField()
+	Completed = forms.BooleanField(required=False)
 	ID = forms.CharField(widget=forms.HiddenInput())

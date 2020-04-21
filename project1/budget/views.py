@@ -2,8 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from budget.models import Budget
+from budget.models import Budget, BudgetCategory
 from budget.forms import add_budget, edit_budget
+from rest_framework import viewsets
+from rest_framework import permissions
+from budget.serializers import UserSerializer, BudgetSerializer, BudgetCategorySerializer
+
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -41,7 +45,7 @@ def fillpagedata(uname):
 		y = y + 1
 		page_data[row] = []
 		page_data[row].append(x.Description)
-		page_data[row].append(x.Category)
+		page_data[row].append(x.Category.Category)
 		page_data[row].append(x.Projected)
 		page_data[row].append(x.Actual)
 		page_data[row].append(x.id)
@@ -57,13 +61,13 @@ def addbudget(request):
 			act = add_budget_form.cleaned_data["Actual"]
 			pred = add_budget_form.cleaned_data["Projected"]
 			chois = add_budget_form.cleaned_data["Category"]
-			choises = { '1' : 'Food', '2' : 'Clothing', '3' : 'Housing', '4' : 'Education',  '5' : 'Entertainment', '6' : 'Other'}
+			sel_category = BudgetCategory.objects.filter(id=chois).get()
 			budget = Budget()
 			budget.Username = request.user
 			budget.Description = desc
 			budget.Projected = pred
 			budget.Actual = act
-			budget.Category = choises[chois]
+			budget.Category = sel_category
 			budget.save()
 			page_data = fillpagedata(request.user)
 			return render(request, 'budget/budget.html', {"dat": page_data, "data":calculate(request.user)})
@@ -79,20 +83,19 @@ def editbudget(request):
 			act = edit_budget_form.cleaned_data["Actual"]
 			pred = edit_budget_form.cleaned_data["Projected"]
 			chois = edit_budget_form.cleaned_data["Category"]
-			choises = { '1' : 'Food', '2' : 'Clothing', '3' : 'Housing', '4' : 'Education',  '5' : 'Entertainment', '6' : 'Other'}
+			sel_category = BudgetCategory.objects.filter(id=chois).get()
 			budget = Budget.objects.get(id=ids)
 			budget.Description = desc
 			budget.Projected = pred
 			budget.Actual = act
-			budget.Category = choises[chois]
+			budget.Category = sel_category
 			budget.save()
 			page_data = fillpagedata(request.user)
 			return render(request, 'budget/budget.html', {"dat": page_data, "data":calculate(request.user)})
 	else:
 		page_data = {}
 		records = Budget.objects.get(id = request.GET['id'])
-		choises = { 'Food' : 1, 'Clothing' : 2, 'Housing' : 3, 'Education' : 4,  'Entertainment' : 5, 'Other' : 6}
-		data_dict = {'Description': records.Description, 'Category': choises[records.Category], 'Projected': records.Projected, 'Actual' : records.Actual, 'ID' : request.GET['id']}
+		data_dict = {'Description': records.Description, 'Category': records.Category.id, 'Projected': records.Projected, 'Actual' : records.Actual, 'ID' : request.GET['id']}
 		et = edit_budget(initial=data_dict)
 		page_data["edit_budget_form"] = et
 	return render(request, 'budget/editbudget.html', context=page_data)
@@ -104,3 +107,30 @@ def removebudget(request):
 	record.delete()
 	page_data = fillpagedata(request.user)
 	return render(request, 'budget/budget.html', {"dat": page_data})
+
+
+
+
+
+
+
+
+class BudgetViewSet(viewsets.ModelViewSet):
+	queryset = Budget.objects.all()
+	serializer_class = BudgetSerializer
+	permission_classes = [permissions.IsAuthenticated]
+
+
+ 
+
+class UserViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
+	permission_classes = [permissions.IsAuthenticated]
+
+
+
+class BudgetCategoryViewSet(viewsets.ModelViewSet):
+	queryset = BudgetCategory.objects.all()
+	serializer_class = BudgetCategorySerializer
+	permission_classes = [permissions.IsAuthenticated]

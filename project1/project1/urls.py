@@ -14,11 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from core import views as core_views
 from journal import views as journal_views
 from tasks import views as tasks_views
 from budget import views as budget_views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'tasks', tasks_views.TaskViewSet)
+router.register(r'users', tasks_views.UserViewSet)
+router.register(r'task-categories', tasks_views.CategoryViewSet)
+router.register(r'budget', budget_views.BudgetViewSet)
+router.register(r'budget-categories', budget_views.BudgetCategoryViewSet)
+router.register(r'journal', journal_views.JournalViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,5 +49,7 @@ urlpatterns = [
     path('addtask/', tasks_views.AddTasks, name='add_task'),
     path('edit/', tasks_views.edit, name='tasks_edit'),
     path('hide/', tasks_views.hide, name='hide_tasks'),
-    path('remove/', tasks_views.remove, name='tasks_remove')
+    path('remove/', tasks_views.remove, name='tasks_remove'),
+    path('api/v1/', include(router.urls)),
+    path('api-auth/v1/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from journal.models import Journal
 from journal.forms import add_journal, edit_journal
+from rest_framework import viewsets
+from rest_framework import permissions
+from journal.serializers import UserSerializer, JournalSerializer
+
 # Create your views here.
 
 
@@ -75,3 +80,18 @@ def removeentry(request):
 	record.delete()
 	page_data = fillpagedata(request.user)
 	return render(request, 'journal/journal.html', {"dat": page_data})
+
+
+
+class JournalViewSet(viewsets.ModelViewSet):
+	queryset = Journal.objects.all()
+	serializer_class = JournalSerializer
+	permission_classes = [permissions.IsAuthenticated]
+
+
+
+class UserViewSet(viewsets.ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
+	permission_classes = [permissions.IsAuthenticated]
+
